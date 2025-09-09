@@ -109,7 +109,8 @@ app.post("/api/send-mail-individual", async (req, res) => {
 
     await transporter.sendMail({
       from: `"Mentor Feedback" <${process.env.SMTP_USER}>`,
-      to: "bnidheesh844@gmail.com",
+      to: mentor.email,
+      cc: mentor.cc.split(","),
       subject: `📊 Monthly Feedback Summary - ${mentor.name} (${thisMonth})`,
       text: `Hi ${mentor.name},\n\nFeedback Count: ${mentor.feedbackCount}\nFeedback Rating: ${mentor.avgRating}\nCourse: ${mentor.course}\n\n(Open in HTML mail for detailed table)\n`,
       html: htmlBody,
