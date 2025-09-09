@@ -15,9 +15,6 @@ const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
 // 🔎 Debugging (log once on startup, not in production)
-console.log("SMTP_USER:", process.env.SMTP_USER || "❌ MISSING");
-console.log("SMTP_PASS:", process.env.SMTP_PASS ? "✅ LOADED" : "❌ MISSING");
-console.log("MONGO_URI:", MONGO_URI ? "✅ LOADED" : "❌ MISSING");
 
 // Middleware
 app.use(cors());
@@ -30,7 +27,6 @@ app.use("/api/mail", mailRoutes);
 
 app.post("/api/send-mail-individual", async (req, res) => {
   const mentor = req.body
-  console.log(mentor.email)
   const date = new Date(); 
   const now = new Date(date.getFullYear(), date.getMonth() - 1, 1);
   const thisMonth = now.toLocaleString("en-US", { month: "long", year: "numeric" });
@@ -105,7 +101,6 @@ app.post("/api/send-mail-individual", async (req, res) => {
       ENTRI</p>
     `;
 
-    console.log(mentor.cc.split(","))
 
     await transporter.sendMail({
       from: `"Mentor Feedback" <${process.env.SMTP_USER}>`,

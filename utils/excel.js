@@ -124,7 +124,6 @@ const getRowData = (course, row, mentorIndex, mentorsRating, currentIndex, clean
   let coordinatorName = row["Choose your "+course+" Course Coordinator"] || row["Choose your  "+course+" Course Coordinator"]
   if (coordinatorName){
     let currentRating = row["How do you rate the support from the "+course+" course coordinator ?"] || row["How do you rate the support from the "+course+" Course Coordinator ?"] || row["How do you rate the support from the  "+course+" course coordinator ?"]
-    console.log(row[" Please explain the reasons for your rating\nWhat worked well or didn't work well for you in the "+course+" Coordinators support?"] || row["   Please explain the reasons for your rating\nWhat worked well or didn't work well for you in the "+course+" Coordinators support?"], course)
     if (mentorIndex[coordinatorName] != undefined){
       let mentorData = mentorsRating[mentorIndex[coordinatorName]]
       mentorData.avgRating = parseFloat((((mentorData.avgRating * mentorData.feedbackCount) + (coordinatorRatingValues[currentRating] || 0))/(mentorData.feedbackCount+1)).toFixed(1))
